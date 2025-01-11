@@ -1,0 +1,11 @@
+services:
+  manga_pgvector:
+    container_name: manga_pgvector
+    image: ankane/pgvector
+    ports:
+      - 5432:5432
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 1312
+    
