@@ -3,7 +3,7 @@ import { BaseEntity } from './base.entity';
 
 @Entity({
   schema: 'public',
-  name: 'user',
+  name: 'users',
 })
 export class User extends BaseEntity {
   @Column({ unique: true, nullable: false })

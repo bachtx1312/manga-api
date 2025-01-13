@@ -13,6 +13,9 @@ const {
   OPEN_AI_SECRET_KEY = '',
   JWT_SECRET = '',
   JWT_EXPIRES = '7d',
+  CLOUDINARY_NAME = '',
+  CLOUDINARY_API_KEY = '',
+  CLOUDINARY_API_SECRET = '',
 } = process.env;
 
 export const ENV = {
@@ -28,6 +31,11 @@ export const ENV = {
   },
   OPEN_AI: {
     SECRET_KEY: OPEN_AI_SECRET_KEY,
+  },
+  CLOUDINARY: {
+    NAME: CLOUDINARY_NAME,
+    API_KEY: CLOUDINARY_API_KEY,
+    API_SECRET: CLOUDINARY_API_SECRET,
   },
   JWT: {
     SECRET: JWT_SECRET,

@@ -1,0 +1,41 @@
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
+import { GenreService } from './genre.service';
+import { CreateGenreReqDto, UpdateGenreReqDto } from './genre.interface';
+
+@Controller('genre')
+export class GenreController {
+  constructor(private readonly genreService: GenreService) {}
+
+  @Post()
+  create(@Body() createGenreDto: CreateGenreReqDto) {
+    return this.genreService.create(createGenreDto);
+  }
+
+  @Get()
+  findAll() {
+    return this.genreService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.genreService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateGenreDto: UpdateGenreReqDto) {
+    return this.genreService.update(id, updateGenreDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.genreService.remove(id);
+  }
+}

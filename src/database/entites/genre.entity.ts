@@ -1,25 +1,19 @@
 import { Column, Entity, JoinTable, ManyToMany } from 'typeorm';
 import { BaseEntity } from './base.entity';
-import { Genre } from './genre.entity';
+import { Manga } from './manga.entity';
 
 @Entity({
   schema: 'public',
-  name: 'mangas',
+  name: 'genres',
 })
-export class Manga extends BaseEntity {
+export class Genre extends BaseEntity {
   @Column()
   title: string;
 
   @Column({ nullable: true })
-  thumbnailUrl: string;
-
-  @Column({ nullable: true })
   description: string;
 
-  @Column({ nullable: false })
-  authorName: string;
-
-  @ManyToMany(() => Genre)
+  @ManyToMany(() => Manga)
   @JoinTable({ name: 'manga_genre' })
-  genres: Genre[];
+  mangas: Manga[];
 }

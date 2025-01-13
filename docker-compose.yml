@@ -3,9 +3,14 @@ services:
     container_name: manga_pgvector
     image: ankane/pgvector
     ports:
-      - 5432:5432
+      - ${DB_PORT}:5432
     restart: always
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: 1312
-    
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+  
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "${REDIS_PORT}:6379"

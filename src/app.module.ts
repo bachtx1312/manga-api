@@ -8,7 +8,6 @@ import { HealthModule } from './modules/health/health.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ENV } from './core/configs/system';
 import { Manga } from './database/entites/manga.entity';
-import { ChatModule } from './modules/chat/chat.module';
 import { OpenAiModule } from './modules/open-ai/open-ai.module';
 import { AuthService } from './modules/auth/auth.service';
 import { AuthModule } from './modules/auth/auth.module';
@@ -20,6 +19,12 @@ import { JwtStrategy } from './passport/strategies/jwt.strategy';
 import { LocalStrategy } from './passport/strategies/local.strategy';
 import { PassportModule } from '@nestjs/passport';
 import { UserModule } from './modules/user/user.module';
+import { ConversationModule } from './modules/conversation/conversation.module';
+import { GenreModule } from './modules/genre/genre.module';
+import { MangaModule } from './modules/manga/manga.module';
+import { User } from './database/entites/user.entity';
+import { Genre } from './database/entites/genre.entity';
+import { UploadModule } from './modules/upload/upload.module';
 
 const { DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER } = ENV.DATABASE;
 
@@ -30,7 +35,6 @@ const { DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER } = ENV.DATABASE;
     }),
     TerminusModule,
     HealthModule,
-    ChatModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: DB_HOST,
@@ -38,12 +42,11 @@ const { DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER } = ENV.DATABASE;
       database: DB_NAME,
       username: DB_USER,
       password: DB_PASSWORD,
-      entities: [Manga],
+      entities: [User, Manga, Genre],
       synchronize: true,
       autoLoadEntities: true,
       logging: true,
     }),
-    ChatModule,
     OpenAiModule,
     AuthModule,
     UtilsModule,
@@ -54,6 +57,10 @@ const { DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER } = ENV.DATABASE;
     }),
     PassportModule,
     UserModule,
+    ConversationModule,
+    MangaModule,
+    GenreModule,
+    UploadModule,
   ],
   controllers: [AppController, HealthController],
   providers: [
